@@ -1,0 +1,53 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Posts </title> 
+
+  {% block styles %}
+    {% bootstrap_css %}
+    <link href="{% static 'styles.css' %}" rel="stylesheet" type="text/css">
+    
+    {% endblock %}
+
+</head>
+<body>
+  {% include 'navbar.html' %}
+  {% block content %}
+  
+  {% for post in object_list %}
+      <div class="card" style="padding: 30px 40px;">
+        <div class="card-title"> <strong> TITLE: </strong> <a href="#">
+          {{post.title}}</a></div>
+           <div class="card-image"> <strong> CATEGORY: </strong>{{post.category}}</div>
+          <div class="card-content">
+            <p> <strong> Content: </strong>{{post.content}} {{post.pub_date}}</p>
+            
+           <hr>
+
+            <button  class="btn btn-outline-danger"> Like &nbsp;&nbsp; 20 </button>
+            <button class="btn btn-outline-warning"> Dislike &nbsp;&nbsp; 30 </button>
+           
+           <i class="fa fa-comment-o" aria-hidden="true"></i>
+           <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+           
+          </div>
+      </div>
+   {% endfor %}   
+    
+    
+{%endblock%}
+
+    {% block scripts %}
+    <scrip src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></scrip>
+    <scrip src="https://code.jquery.com/jquery-3.5.1.min.js"></scrip>
+    <script src="{% static 'scripts.js'%}"></script>
+   
+    
+     {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+</html>
